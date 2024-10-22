@@ -1,0 +1,10 @@
+services:
+  cpanel:
+    build:
+      context: .
+    container_name: cpanel
+    network_mode: host
+    restart: always
+    tty: true
+    stdin_open: true
+    privileged: true  # Enable privileged mode
