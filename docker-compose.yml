@@ -2,9 +2,10 @@ services:
   cpanel:
     image: ayushdabhi31/cpanel-full
     container_name: cpanel
+    env_file: .
     environment:
-      - CPANEL_USERNAME=your_cpanel_username
-      - CPANEL_PASSWORD=your_cpanel_password
+      - CPANEL_USERNAME=root
+      - CPANEL_PASSWORD=4OprvLRxiA7KVfD
     network_mode: host
     restart: always
     tty: true
