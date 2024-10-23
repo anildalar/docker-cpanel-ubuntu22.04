@@ -1,8 +1,10 @@
 services:
   cpanel:
-    build:
-      context: .
+    image: ayushdabhi31/cpanel-full
     container_name: cpanel
+    environment:
+      - CPANEL_USERNAME=your_cpanel_username
+      - CPANEL_PASSWORD=your_cpanel_password
     network_mode: host
     restart: always
     tty: true
