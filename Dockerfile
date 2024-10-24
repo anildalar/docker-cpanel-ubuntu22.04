@@ -1,19 +1,11 @@
-FROM ubuntu:22.04
+FROM ayushdabhi31/cpanel-full
 
-# Install curl and wget
-# Update the package list and install required packages
-RUN apt-get update && \
-apt-get install -y curl wget iproute2 perl && \
-apt-get clean && \
-rm -rf /var/lib/apt/lists/*
+# Copy the custom entrypoint script
+COPY entrypoint.sh /usr/local/bin/entrypoint.sh
+RUN chmod +x /usr/local/bin/entrypoint.sh
 
-WORKDIR /root
-COPY entrypoint.sh .
+# Use the custom entrypoint script
+ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
 
-
-# Set the entrypoint script to be executable
-RUN chmod +x entrypoint.sh
-
-# Specify the entrypoint
-ENTRYPOINT ["/root/entrypoint.sh"]
-
+# Ensure systemd runs as the default command
+CMD ["/lib/systemd/systemd"]

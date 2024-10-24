@@ -1,13 +1,12 @@
 services:
   cpanel:
-    image: ayushdabhi31/cpanel-full
+    build: .
     container_name: cpanel
-    env_file: .
-    environment:
-      - CPANEL_USERNAME=root
-      - CPANEL_PASSWORD=4OprvLRxiA7KVfD
+    env_file: .env
     network_mode: host
     restart: always
     tty: true
     stdin_open: true
     privileged: true  # Enable privileged mode
+    volumes:
+      - ./cpanel.lisc:/usr/local/cpanel/cpanel.lisc:ro  # Mount the license file as read-only
