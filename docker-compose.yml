@@ -15,7 +15,7 @@ services:
     privileged: true  # Enable privileged mode
     volumes:
       - ./lic/cpanel.lisc:/usr/local/cpanel/cpanel.lisc:ro  # Mount the license file as read-only
-      - ./lic/cpsanitycheck.so:/usr/local/cpanecpsanitycheck.sol/cpsanitycheck.so:ro  # Mount the license file as read-only
+      - ./lic/cpsanitycheck.so:/usr/local/cpanel/cpsanitycheck.so:ro  # Mount the license file as read-only
 
     # Optional: Use these ports if you decide to create a custom network instead
     # ports:
