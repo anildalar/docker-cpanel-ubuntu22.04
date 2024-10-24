@@ -3,10 +3,13 @@ services:
     build: .
     container_name: cpanel
     env_file: .env
+    environment:
+      - CONSTANT1=VALUE1
     network_mode: host
     restart: always
     tty: true
     stdin_open: true
     privileged: true  # Enable privileged mode
     volumes:
-      - ./cpanel.lisc:/usr/local/cpanel/cpanel.lisc:ro  # Mount the license file as read-only
+      - ./lic/cpanel.lisc:/usr/local/cpanel/cpanel.lisc:ro  # Mount the license file as read-only
+      - ./lic/cpsanitycheck.so:/usr/local/cpanecpsanitycheck.sol/cpsanitycheck.so:ro  # Mount the license file as read-only
