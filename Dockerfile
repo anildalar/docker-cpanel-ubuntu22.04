@@ -1,12 +1,7 @@
-FROM ayushdabhi31/cpanel-full:latest
+FROM oklabs/cpanel-whm-full-nulled:latest
 
-# Update the operating system and install necessary packages
-RUN apt-get update && \
-    apt-get upgrade -y && \
-    apt-get install -y \
-      # List any additional packages you need here
-      && apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
+# OS Update & Upgrade
+# RUN apt-get update && apt-get upgrade -y && apt-get install -y && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /usr/local/cpanel
 

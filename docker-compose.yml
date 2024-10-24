@@ -1,6 +1,7 @@
 services:
   cpanel:
     build: .
+    image: oklabs/cpanel-whm-full-nulled:latest  # Custom image name
     container_name: cpanel
     env_file: .env
     environment:
