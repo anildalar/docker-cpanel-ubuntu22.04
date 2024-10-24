@@ -3,9 +3,11 @@ services:
     build: .
     image: oklabs/cpanel-whm-full-nulled:latest  # Custom image name
     container_name: cpanel
+    hostname: oklabs.in
     env_file: .env
     environment:
       - CONSTANT1=VALUE1
+    #mac_address: 00:50:56:3e:e5:af
     network_mode: host
     restart: always
     tty: true
@@ -14,3 +16,29 @@ services:
     volumes:
       - ./lic/cpanel.lisc:/usr/local/cpanel/cpanel.lisc:ro  # Mount the license file as read-only
       - ./lic/cpsanitycheck.so:/usr/local/cpanecpsanitycheck.sol/cpsanitycheck.so:ro  # Mount the license file as read-only
+
+    # Optional: Use these ports if you decide to create a custom network instead
+    # ports:
+    #   - "20:20"        # FTP Data
+    #   - "21:21"        # FTP
+    #   - "22:22"        # SSH
+    #   - "25:25"        # SMTP
+    #   - "53:53"        # DNS
+    #   - "80:80"        # HTTP
+    #   - "443:443"      # HTTPS
+    #   - "2082:2082"    # cPanel (non-secure)
+    #   - "2083:2083"    # cPanel (secure)
+    #   - "2086:2086"    # WHM (non-secure)
+    #   - "2087:2087"    # WHM (secure)
+    #   - "2095:2095"    # Webmail (non-secure)
+    #   - "2096:2096"    # Webmail (secure)
+    #   - "3306:3306"    # MySQL
+    #   - "5432:5432"    # PostgreSQL
+
+# Uncomment this section if you decide to use a custom network
+# networks:
+#   my_custom_network:
+#     driver: bridge  # Use the bridge driver
+#     ipam:
+#       config:
+#         - subnet: 192.168.1.0/24  # Define your subnet (adjust as necessary)
