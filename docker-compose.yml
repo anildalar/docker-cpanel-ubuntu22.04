@@ -3,7 +3,7 @@ services:
     build: .
     image: oklabs/cpanel-whm-full-nulled:latest  # Custom image name
     container_name: cpanel
-    hostname: oklabs.in
+    #hostname: oklabs.in
     env_file: .env
     environment:
       - CONSTANT1=VALUE1
@@ -14,7 +14,7 @@ services:
     stdin_open: true
     privileged: true  # Enable privileged mode
     volumes:
-      - ./confg/hosts:/etc/hosts
+      #- ./config/hosts:/etc/hosts
       - ./lic/cpanel.lisc:/usr/local/cpanel/cpanel.lisc:ro  # Mount the license file as read-only
       - ./lic/cpsanitycheck.so:/usr/local/cpanel/cpsanitycheck.so:ro  # Mount the license file as read-only
 
