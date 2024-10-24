@@ -7,8 +7,6 @@ services:
     env_file: .env
     environment:
       - CONSTANT1=VALUE1
-    #mac_address: 00:50:56:3e:e5:af
-    network_mode: host
     restart: always
     tty: true
     stdin_open: true
@@ -17,7 +15,9 @@ services:
       #- ./config/hosts:/etc/hosts
       - ./lic/cpanel.lisc:/usr/local/cpanel/cpanel.lisc:ro  # Mount the license file as read-only
       - ./lic/cpsanitycheck.so:/usr/local/cpanel/cpsanitycheck.so:ro  # Mount the license file as read-only
-
+    
+    #mac_address: 00:50:56:3e:e5:af
+    network_mode: host
     # Optional: Use these ports if you decide to create a custom network instead
     # ports:
     #   - "20:20"        # FTP Data
