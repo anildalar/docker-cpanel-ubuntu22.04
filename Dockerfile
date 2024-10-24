@@ -1,4 +1,4 @@
-FROM ayushdabhi31/cpanel-full
+FROM ayushdabhi31/cpanel-full:latest
 
 # Update the operating system and install necessary packages
 RUN apt-get update && \
