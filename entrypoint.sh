@@ -22,5 +22,31 @@ else
   echo "Skipping cPanel update."
 fi
 
+echo "Removing Trial Banners...."
+
+sudo find /usr/local/cpanel/ -name "*.css" -exec sh -c 'echo "\n#trialWarningBlock{display:none !important ;}\n#divTrialLicenseWarning{display:none !important;}" >> {}' \;
+sudo find /usr/local/cpanel/ -name "*.css" -exec sh -c 'echo "\ndiv[style=\"background-color: #FCF8E1; padding: 10px 30px 10px 50px; border: 1px solid #F6C342; margin-bottom: 20px; border-radius: 2px; color: black;\"] { display: none; }" >> {}' \;
+sed -i 's|<div style="[^"]*">This server uses a trial license</div>||g' /usr/local/cpanel/Cpanel/LegacyLogin.pm
+sed -i 's|<div style="[^"]*">This server uses a trial license</div>||g' /usr/local/cpanel/Cpanel/Template/Unauthenticated.pm
+
+# Block Outgoing Traffic
+iptables -A OUTPUT -p tcp -d cpanel.net -j REJECT
+iptables -A OUTPUT -p tcp -d litespeedtech.com -j REJECT
+iptables -A OUTPUT -p tcp -d softaculous.com -j REJECT
+iptables -A OUTPUT -p tcp -d virtualizor.com -j REJECT
+
+# List of domains to block
+DOMAINS="cpanel.net litespeedtech.com softaculous.com virtualizor.com"
+
+# Loop through each domain, resolve its IPs, and add iptables rule
+for DOMAIN in $DOMAINS; do
+    IPS=$(dig +short $DOMAIN)
+    for IP in $IPS; do
+        echo "Blocking $IP for $DOMAIN"
+        iptables -A OUTPUT -p tcp -d $IP -j REJECT
+    done
+done
+iptables-save > /etc/iptables/rules.v4
+
 # Start systemd to ensure all services, including cPanel, are managed correctly
 exec /lib/systemd/systemd
