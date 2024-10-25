@@ -168,17 +168,20 @@ socks5 127.0.0.1 $newport"
             ssh-keygen -b 2048 -t rsa -f "$KEY_PATH" -q -N ""
             echo "SSH key pair generated successfully in the current directory."
         fi
+        # Generate a random port between 30000 and 50000
+        newport=$((RANDOM % 20001 + 30000))
         
         proxychains_config="strict_chain
 proxy_dns
 [ProxyList]
 socks5 127.0.0.1 $newport"
-        ssh -D $newport -f -i id_rsa  -C -q -N -oStrictHostKeyChecking=no root@$ip
+
+        ssh -D $newport -f -i id_rsa  -C -q -N -oStrictHostKeyChecking=no root@185.239.209.8
+        proxychains4 -q -f proxychains.conf /usr/local/cpanel/cpkeyclt --force
 
         # Write to proxychains.conf
         echo "$proxychains_config" > proxychains.conf
         echo "Proxychains4 is already installed."
-
     fi
 }
 
