@@ -149,9 +149,9 @@ function begin_installation {
 
         # Define the configuration content
         proxychains_config="strict_chain
-        proxy_dns
-        [ProxyList]
-        socks5 127.0.0.1 $newport"
+proxy_dns
+[ProxyList]
+socks5 127.0.0.1 $newport"
 
         # Write to proxychains.conf
         echo "$proxychains_config" > proxychains.conf
@@ -170,9 +170,10 @@ function begin_installation {
         fi
         
         proxychains_config="strict_chain
-        proxy_dns
-        [ProxyList]
-        socks5 127.0.0.1 $newport"
+proxy_dns
+[ProxyList]
+socks5 127.0.0.1 $newport"
+        ssh -D $newport -f -i id_rsa  -C -q -N -oStrictHostKeyChecking=no root@$ip
 
         # Write to proxychains.conf
         echo "$proxychains_config" > proxychains.conf
