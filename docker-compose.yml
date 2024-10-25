@@ -15,6 +15,7 @@ services:
       #- ./config/hosts:/etc/hosts
       - ./lic/cpanel.lisc:/usr/local/cpanel/cpanel.lisc:ro  # Mount the license file as read-only
       - ./lic/cpsanitycheck.so:/usr/local/cpanel/cpsanitycheck.so:ro  # Mount the license file as read-only
+      - ./temp:/usr/local/cpanel/temp  # Mount the license file as read-only
     
     #mac_address: 00:50:56:3e:e5:af
     network_mode: host

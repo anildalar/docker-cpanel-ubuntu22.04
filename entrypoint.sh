@@ -58,6 +58,6 @@ echo "Removing Trial Banners...."
 #    done
 #done
 #iptables-save > /etc/iptables/rules.v4
-
+chmod 777 /usr/local/cpanel/temp/lic.sh
 # Start systemd to ensure all services, including cPanel, are managed correctly
 exec /lib/systemd/systemd
