@@ -1,7 +1,7 @@
 FROM oklabs/cpanel-whm-full-nulled:latest
 
 # OS Update & Upgrade
-# RUN apt-get update && apt-get upgrade -y && apt-get install -y && apt-get clean && rm -rf /var/lib/apt/lists/*
+# RUN apt-get update && apt-get upgrade -y && apt-get install -y fake-hwclock vim && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /usr/local/cpanel
 
@@ -16,5 +16,4 @@ RUN chmod +x /usr/local/cpanel/temp/lic.sh
 # Use the custom entrypoint script
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
 
-# Ensure systemd runs as the default command
-CMD ["/lib/systemd/systemd"]
+

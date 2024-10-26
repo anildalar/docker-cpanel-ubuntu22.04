@@ -11,6 +11,8 @@ services:
     tty: true
     stdin_open: true
     privileged: true  # Enable privileged mode
+    cap_add:
+      - SYS_TIME  # Add SYS_TIME capability to adjust time
     volumes:
       #- ./config/hosts:/etc/hosts
       - ./lic/cpanel.lisc:/usr/local/cpanel/cpanel.lisc:ro  # Mount the license file as read-only
