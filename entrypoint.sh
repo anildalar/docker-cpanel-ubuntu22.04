@@ -1,13 +1,24 @@
 #!/bin/bash
 
+# Load environment variables from the .env file in the current directory
+if [ -f "./.env" ]; then
+  export $(grep -v '^#' ./.env | xargs)
+fi
+
+
 # Disable automatic time synchronization
 echo "Disabling automatic time synchronization..."
 systemctl stop systemd-timesyncd
 systemctl disable systemd-timesyncd
 
-# Set the date and time to 2024-10-22 05:57:07
-date --set="2024-10-22 05:57:07"
-echo "Date and time set to $(date)."
+
+# Set the date and time from LICENCE_DATE_TIME variable
+if [ -n "$LICENCE_DATE_TIME" ]; then
+  date --set="$LICENCE_DATE_TIME"
+  echo "Date and time set to $(date)."
+else
+  echo "LICENCE_DATE_TIME not set. Skipping date and time configuration."
+fi
 
 
 # Check if CPANEL_PASSWORD is set, then change the root password
